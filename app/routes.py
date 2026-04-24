@@ -3,7 +3,7 @@ from datetime import date
 from fastapi import APIRouter, Depends, Form, HTTPException, Request, Response
 from sqlalchemy.orm import Session
 
-from . import auth, crud
+from . import auth, crud, models
 from .database import get_db
 
 router = APIRouter()
@@ -15,7 +15,7 @@ def get_current_user(request: Request, db: Session):
     if not user_id:
         raise HTTPException(status_code=401, detail="Пользователь не авторизован")
 
-    user = db.query(crud.models.User).filter(crud.models.User.id == int(user_id)).first()
+    user = db.query(models.User).filter(models.User.id == int(user_id)).first()
 
     if not user:
         raise HTTPException(status_code=401, detail="Пользователь не найден")
