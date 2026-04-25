@@ -33,7 +33,7 @@ class User(Base):
 
 
 class Workout(Base):
-    tablename = "workouts"
+    __tablename__ = "workouts"
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
@@ -59,7 +59,7 @@ class Workout(Base):
 
 
 class Exercise(Base):
-    tablename = "exercises"
+    __tablename__ = "exercises"
 
     id = Column(Integer, primary_key=True, index=True)
     workout_id = Column(Integer, ForeignKey("workouts.id"), nullable=False)
@@ -80,7 +80,7 @@ class Exercise(Base):
 
 
 class Set(Base):
-    tablename = "sets"
+    __tablename__ = "sets"
 
     id = Column(Integer, primary_key=True, index=True)
     exercise_id = Column(Integer, ForeignKey("exercises.id"), nullable=False)
