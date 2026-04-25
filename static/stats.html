@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Статистика — FitLog</title>
+<link rel="stylesheet" href="/static/css/style.css">
+<style>
+  .stats-main-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    gap: 16px;
+    color: var(--text-muted);
+  }
+
+  .spinner {
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="/" class="header-logo">
+    <div class="logo-icon">⚡</div>
+    FitLog
+  </a>
+  <nav>
+    <a href="/workouts">Тренировки</a>
+    <a href="/stats" class="btn-nav">Статистика</a>
+    <a href="#" id="logoutBtn" style="margin-left:4px;">Выйти</a>
+  </nav>
+</header>
+
+<main class="container">
+
+  <div class="page-title">
+    <h1>Статистика</h1>
+    <p>Твои результаты за всё время</p>
+  </div>
+
+  <div id="message"></div>
+
+  <div id="statsBlock">
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <span>Загрузка данных…</span>
+    </div>
+  </div>
+
+</main>
+
+<script src="/static/js/stats.js"></script>
+</body>
+</html>

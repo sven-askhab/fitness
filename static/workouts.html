@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мои тренировки — FitLog</title>
+<link rel="stylesheet" href="/static/css/style.css">
+<style>
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .workout-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px 22px;
+    margin-bottom: 14px;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .workout-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  }
+
+  .workout-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .workout-card-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+
+  .workout-card-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    line-height: 1.55;
+  }
+
+  .workout-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .workout-card-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .workout-card-footer {
+    display: flex;
+    gap: 10px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 720px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="/" class="header-logo">
+    <div class="logo-icon">⚡</div>
+    FitLog
+  </a>
+  <nav>
+    <a href="/workouts" class="btn-nav">Тренировки</a>
+    <a href="/stats">Статистика</a>
+    <a href="#" id="logoutBtn">Выйти</a>
+  </nav>
+</header>
+
+<main class="container">
+
+  <div class="page-title">
+    <h1>Мои тренировки</h1>
+    <p>Создавай и отслеживай тренировки</p>
+  </div>
+
+  <div id="message"></div>
+
+  <div class="two-col">
+
+    <!-- Форма создания -->
+    <div>
+      <p class="section-heading">Новая тренировка</p>
+      <div class="card">
+        <form id="workoutForm" class="form">
+          <div class="form-group">
+            <label class="form-label">Название</label>
+            <input type="text" name="title" placeholder="Грудь и трицепс" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Описание</label>
+            <textarea name="description" placeholder="Опционально…"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Дата</label>
+            <input type="date" name="workout_date" required>
+          </div>
+          <button type="submit" class="btn btn-full" style="margin-top:4px;">Добавить тренировку</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Список тренировок -->
+    <div>
+      <p class="section-heading">Список тренировок</p>
+      <div id="workoutsList">
+        <div class="empty-state">
+          <div class="empty-icon">🗓️</div>
+          <h3>Тренировок пока нет</h3>
+          <p>Создай первую тренировку слева</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<script src="/static/js/workouts.js"></script>
+</body>
+</html>

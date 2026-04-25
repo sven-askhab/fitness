@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тренировка — FitLog</title>
+<link rel="stylesheet" href="/static/css/style.css">
+<style>
+  .workout-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+
+  .meta-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 5px 14px;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .exercise-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .exercise-card:hover { border-color: var(--border-hover); }
+
+  .exercise-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .exercise-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.02em;
+  }
+
+  .exercise-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 0 20px 16px;
+    margin-top: 12px;
+  }
+
+  .no-sets {
+    padding: 20px;
+    font-size: 14px;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  @media (max-width: 720px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="/" class="header-logo">
+    <div class="logo-icon">⚡</div>
+    FitLog
+  </a>
+  <nav>
+    <a href="/workouts">Тренировки</a>
+    <a href="/stats">Статистика</a>
+    <a href="#" id="logoutBtn">Выйти</a>
+  </nav>
+</header>
+
+<main class="container">
+
+  <div class="page-title">
+    <h1 id="workoutTitle">Тренировка</h1>
+    <div class="workout-meta" id="workoutMeta"></div>
+  </div>
+
+  <div id="message"></div>
+
+  <div class="two-col">
+
+    <!-- Форма добавления -->
+    <div>
+      <p class="section-heading">Добавить упражнение</p>
+      <div class="card">
+        <form id="exerciseForm" class="form">
+          <div class="form-group">
+            <label class="form-label">Название упражнения</label>
+            <input type="text" name="name" placeholder="Жим лёжа" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Описание</label>
+            <textarea name="description" placeholder="Опционально…"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Подход №</label>
+            <input type="number" name="set_number" placeholder="1" min="1" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Повторения</label>
+            <input type="number" name="reps" placeholder="10" min="1" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Вес, кг</label>
+            <input type="number" name="weight" placeholder="60" min="0" step="0.5" required>
+          </div>
+          <button type="submit" class="btn btn-full" style="margin-top:4px;">Добавить упражнение</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Список упражнений -->
+    <div>
+      <p class="section-heading">Упражнения</p>
+      <div id="exercisesList">
+        <div class="empty-state">
+          <div class="empty-icon">🏋️</div>
+          <h3>Пока пусто</h3>
+          <p>Добавь первое упражнение слева</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<script src="/static/js/workout_detail.js"></script>
+</body>
+</html>
